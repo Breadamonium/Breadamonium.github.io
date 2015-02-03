@@ -1,0 +1,107 @@
+/*CSS Stylesheet for hw1 info2300*/
+/*Created by Youliang Pan 2/1/15*/
+/*W3Schools.com helped massively with the coding*/
+/*Images obtained from Wizards of the Coast: http://magic.wizards.com/en/articles/media/wallpapers*/
+
+ body { 
+	font-size: 16px;
+	font-family: Verdana, Geneva, sans-serif;
+	/*background-color: #white;*/
+	background-image: url(../images/TimeWalk_MTGO_1920x1080_Wallpaper.jpg);
+}
+
+
+ #container {
+	width: 900px;
+	margin: auto;
+	border: thin solid black;
+	/*background-color:#white;*/
+	background-image: url(../images/TimeWalk_MTGO_1920x1080_Wallpaper);
+
+}
+
+
+ #header { 
+ 	color: white;
+	/*Code for black bordered white text obtained from: http://stackoverflow.com/questions/14553166/css-text-border*/
+	text-align: center;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; 
+	font-size: 50px;
+	width: 900px;
+	height: 200px;
+	background-image: url(../images/Big_Kamigawa-Islands_Banner.jpg);
+}
+
+
+ #menubar {
+
+	height: 60px;
+	background-color: black;
+	position: relative;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+
+}
+ 
+ /*Code for link hover/changes obtained from BadDragonProductions.com*/
+.mblinks {
+		
+	position: relative;
+	height: 50px;
+	text-align: center;
+
+}
+	
+
+ .mblinks li {
+	 
+	display: inline;
+	
+}
+
+ 
+ .mblinks li a {
+	
+     padding: 16px 30px;
+     color: #fff;
+	 text-decoration: none;
+	 
+}	
+	 
+	
+ .mblinks li a:hover {
+	 
+	background-color:blue;
+	text-decoration:underline;
+	 
+}
+
+ .p  {
+	 text-align: center;
+}
+
+ #main {
+
+	width: 800px;
+	height: auto;
+	margin: auto;
+	background-color:#FFFFFF;
+	padding: 10px;
+	border-top: 0px;
+	border-right: 1px solid #000;
+	border-left:  1px solid #000;
+	border-bottom: 1px solid #000;
+
+} 
+
+ #footer {
+	 
+	position: absolute;
+	bottom:0px;
+	width: auto;
+	height: 20px;
+	font-size:8px;
+	background-color: black;
+	color: #FFF;
+
+}
