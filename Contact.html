@@ -26,37 +26,6 @@
 		<div id="main">
 
 			<div class="p">
-			<!-- Mail code obtained from http://stackoverflow.com/questions/5335273/how-to-send-an-email-using-php-->
-	
-			<?php
-			$subject = $email = $message = $emailErr = "";
-			if (empty($_POST["email"])) {
-				$emailErr = "Email is required";
-			} else {
-				$email = ($_POST["email"]);
-				if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-					$emailErr = "Invalid email format"; 
-				}
-			}
-			if (empty($_POST["subject"])) {
-				$subject = "";
-			} 
-			else {
-				$subject = ($_POST["subject"]);
-			}
-			
-			if (empty($_POST["message"])) {
-				$message = "";
-			} 
-			else {
-				$message = ($_POST["message"]);
-			}
-			if (isset( $_POST['submit'] ) ) { 
-				print("Successfully sent message to youlpan@gmail.com!");
-			}
-			mail("youlpan@gmail.com",$subject, $message, $email);
-			?>
-			<!--Email code obtained from http://www.w3schools.com/php/showphp.asp?filename=demo_form_validation_special-->
 			<form method="post" action="Contact.php"> 
 				Please send me an email if you wish to inquire about references
 				or for my resume information.

@@ -22,56 +22,6 @@
 
 	<div id="main">
 		<div class="p">
-		<?php 
-				function calculateScore($initialscore){
-					$score = $initialscore;
-					$Hand = $_POST["Handed"];
-					if($Hand == "Right"){
-						$score+=1;
-					}
-					else{
-						$score+=0;
-					}
-					$number = $_POST["number"];
-					if(preg_match("/4/i", $number)){
-						$score+=1;
-					}
-					else{
-						$score+=0;
-					}
-				
-					$instruments = $_POST["instru"];
-					foreach($instruments as $instrum){
-						if($instrum == "recorder"){
-							$score +=1;
-						}
-						elseif($instrum == "piano"){
-							$score +=1;
-						}
-						elseif($instrum == "trumpet"){
-							$score +=1;
-						}
-						elseif($instrum == "euphonium"){
-							$score +=1;
-						}
-						else {
-							$score +=0;
-						}
-					}
-					$color = $_POST["fav_color"];
-					if($color =="1"){
-						$score+=1;
-					}else{
-						$score+=0;
-					}
-					echo($score);
-				}
-				if (isset( $_POST['submit'] ) ) { 
-					print("Your score is: ");
-					calculateScore(0);
-					print(" out of 7"); 
-				}	
-		?>
 			<h5> Let's try a guessing game/quiz about me! </h5>
 			<form method="post" action="Games.php"> 
 				What hand do I use to write with? 
@@ -105,3 +55,4 @@
 </div><!-- container div tag close -->
 </body><!-- body div tag close -->
 </html><!-- html div tag close -->
+
