@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Vincent Pan | Personal Website</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/mainstylesheet.css">
+  <link rel="shortcut icon" type="image/ico" href="favicon.ico" />
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+		<div class="navbar-header">
+		<p>Vincent Pan's Website<p>
+		  <button class = "navbar-toggle" data-toggle = "collapse" data-target=".navHeaderCollapse">
+		    <span class="sr-only"> Toggle navigation </span>
+			<span class "icon-bar"></span>
+			<span class "icon-bar"></span>
+			<span class "icon-bar"></span>
+		  </button>
+		 </div>
+		<div id="navbar" class="collapse navbar-collapse navHeaderCollapse">
+          <ul class="navbar-right nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li id="current"><a href="projects.html">Projects</a></li>
+			<li><a href="resume.html">Resume</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+		<div class="container-fluid background-grey">
+			<div class="container">
+				 <div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<h1 class="text-white">Hackathon Projects: </h1>
+						<br><br>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<h2> Uber Reminder Rides | iOS App</h2>
+								<h3><i>September 2015</i></h3>
+								<h4>
+								This project was done in 48-hours during Cornell's Big Red Hacks 2015. It was an app that integrated 
+								the iOS native calendar app with Uber's API. "Events" could be scheduled for the future and an uber-ride
+								request attached to that event. Then on that day, the app would automatically schedule the uber for the 
+								person.
+								<br><br>
+								Devpost at: <a href="http://devpost.com/software/reminderrides">http://devpost.com/software/reminderrides</a>
+								<br><br>
+								Github at: <a href="https://github.com/ADaley121/BRH2015">https://github.com/ADaley121/BRH2015</a>
+								<br><br>
+								</h4>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<h2> Afya Volunteering Sign-in | Web App</h2>
+								<h3><i>November 2015</i></h3>
+								<h4>
+								This project was done in 48-hours during Cornell's Random hacks of kindness event. Atypical of a usual hackathon, 
+								participants instead were grouped with business majors and other discliplines to specifically work on projects 
+								brought in from non-profit companies in the local area. This web application was to design something to solve
+								Afya's volunteering tracking and system sign-in problem. Currently they worked with Excel and Survey monkey to 
+								keep track of volunteers, so it was unreliable and costly. We built a web-app with a database back-end to easily 
+								keep track of volunteer hours and sign-ins/sign-outs. Additionally, we also had an admin panel which features 
+								simplified analytics of all the data in the database. 
+								<br><br>
+								Blog post: <a href="https://randomhacksofkindness2015.splashthat.com/">https://randomhacksofkindness2015.splashthat.com/</a>
+								<br><br>
+								Github at: <a href="https://github.com/Breadamonium/RHoK2015-Afya">https://github.com/ADaley121/BRH2015</a>
+								<br><br>
+								</h4>
+							</div>
+					</div>
+				 </div>
+				 <div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<h1 class="text-white">Academic Projects: </h1>
+						<br><br>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<h2> CS 4320 | BCNF Tree</h2>
+								<h3><i>October 2015</i></h3>
+								<h4>
+								For this project, we implemented a B+ tree in java. Given a generic framework of a linkedlist of nodes, we had to properly 
+								implement insertion and deletion of records. Additionally, we had to follow the post condition in which we must split full buckets after an insertion, and then redistribute records to the left or right tree depending on the load. For deletion, we had to check if the bucket was underfull, and then combine buckets and redistribute if neccessary. Finally we had to reset the root of the tree if a split or a combine of buckets caused the tree level to increase or decrease. In this project, I learned about indexing and tree traversal for B+ trees. 
+								<br><br>
+								Github is private for Academic integrity reasons.
+								<br><br>
+								</h4>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<h2> CS 3410 | Network Honeypot</h2>
+								<h3><i>April 2015</i></h3>
+								<h4>
+								We wrote a device driver in C for a simulated network card. We would be 
+								given packets of data in the form of bits. We had to process these bits to 
+								analyze the bits and classify them as spammer, normal, or evil. We were given 
+								8 rings to act as 8 simulated threads running the same program concurrently, 
+								but with all 8 rings drawing from the same queue of packets. In this project, I learned
+								about multi-threading and bit analysis. 
+								<br><br>
+								Assignment description found at: <br>
+								<a href="http://www.cs.cornell.edu/courses/cs3410/2015sp/project/pa4/pa4.html">http://www.cs.cornell.edu/courses/cs3410/2015sp/project/pa4/pa4.html</a>
+								<br><br>
+								Github is private for Academic integrity reasons
+								<br><br>
+								</h4>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<h2> CS 3410 | MIPS-complaint CPU</h2>
+								<h3><i>February 2015</i></h3>
+								<h4>
+								We created a fully-working CPU that could handle MIPs instructions in Logicism. 
+								This built on a previous project in the class in which we coded up an ALU. Though this project did not involve coding, it was still a learning experience in which us computer science majors were introduced to the world of ECE and how computers work on the architectural level. 
+								<br><br>
+								Assignment description found at: <br>
+								<a href="http://www.cs.cornell.edu/courses/cs3410/2015sp/project/pa2/pa2.html">http://www.cs.cornell.edu/courses/cs3410/2015sp/project/pa2/pa2.html</a>
+								<br><br>
+								Github is private for Academic integrity reasons
+								<br><br>
+								</h4>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<h2> CS 3110 | Pokemon Game</h2>
+								<h3><i>December 2014 </i></h3>
+								<h4>
+								In this project, we created the framework for the Pokemon-imitation game 
+								in OCAML. We had to work out the drafting of pokemon by two players along with the
+								simulated battle with those pokemon afterwards. Items and pokemon moves were given 
+								as input files, but we had to code the actual effects those things did to the stats of the pokemon objects. Finally, we also created a rudimentary AI bot that drafted pokemon
+								and played out the battle against other students' AI bots in the class. In this project, I learned about the importance of git in a large, complex software project along with working with other students. 
+								<br><br>
+								Assignment description found at: <br>
+								<a href="http://www.cs.cornell.edu/courses/cs3110/2014fa/hw/6/ps6.pdf">http://www.cs.cornell.edu/courses/cs3110/2014fa/hw/6/ps6.pdf</a> 
+								<br><br>
+								Github is private for Academic integrity reasons
+								<br><br>
+								</h4>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<h2> CS 2110 | Danaus Butterfly Flowers</h2>
+								<h3><i>April 2014 </i></h3>
+								<h4>
+								In this project, I learned to implement complex traversal algorithms such as DFS and BFS. In the project, I had to make a butterfly traverse through a map of flowers and collect each once, along with minimizing the path it goes through. In this project, I learned about the importance of program runtime and how to implement algorith pseudocode in java.
+								<br><br><br>
+								Assignment description found at:
+								<a href="http://www.cs.cornell.edu/courses/cs2110/2014sp/assignments/a6/a6.pdf"> http://www.cs.cornell.edu/courses/cs2110/2014sp/assignments/a6/a6.pdf</a>
+								<br><br>
+								Github is private for Academic integrity reasons
+								<br><br>
+								</h4>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<h2> CS 1110 | Breakout Game</h2>
+								<h3><i>December 2013</i></h3>
+								<h4>
+								In this project, I created an imitation of the classic arcade game Breakout in python.
+								Here we were given a library of classes including the ball, the bricks, the pad, along with given mouse-click and movement classes. I had to code up the physics of the ball movement after bouncing off the pad along with the actual mouse clicking and tracking to move the pad. Finally, the program had to check for when the player won or if he/she lost when time was up. In this project, I learned to read basic documentation of pre-written code/libraries and how to integrate other people's code with mine. 
+								<br><br>
+								Assignment description found at:
+								<a href="http://www.cs.cornell.edu/courses/cs1110/2013fa/assignments/assignment6/index.php">  http://www.cs.cornell.edu/courses/cs1110/2013fa/assignments/assignment6/index.php</a>
+
+								<br><br>
+								Github is private for Academic integrity reasons
+								<br><br>
+								</h4>
+							</div>
+					</div>
+				 </div>
+			</div>
+		</div>		
+
+<!--Footer start-->
+<footer class="site-footer">
+	<div class="container">
+		<div class="row">
+		</div>
+		<div class="bottom-footer">
+			<div class="col-md-5"> &copy; Copyright Youliang Pan 2016 </div>
+			</div>
+		</div>
+	</div>
+</footer>
+<!--Footer End-->
+</body>
+</html>
