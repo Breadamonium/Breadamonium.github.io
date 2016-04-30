@@ -1,0 +1,764 @@
+<html>
+	<head>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+		<script src="http://d3js.org/topojson.v1.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<link href="css/project2.css" rel="stylesheet">
+	</head>
+
+<body>
+<!-- This function allows for a smooth scroll to the choropleth after clicking a period of time. -->
+<script>
+$(document).ready(function() {
+    $(".bars").click(function(event){
+        $('html, body').animate({scrollTop: '+=662px'}, 800);
+    });
+});
+</script>
+<center> 
+	<h1>Pretty Political Pollution Plots</h1> 
+	<h3> For this project, we were curious to see how the political alignment affected greenhouse gas emissions, if at all.  We define political alignment as the president's party over each four-year period of time. State alignment is determined by which president that state supported in the election.<br></center>The first chart plots the cumulative green house gas emissions (GHG) for the Unites States over time. The plot is divided into four-year periods where the color of the block represents the party of president in office over that period of time. Clicking on each period of time reveals the political climate and emission data for that period of time.</h3> <br><br> The second chart shows the political orientation of the union for that period of time (based on the party the state supported for presidency) and hovering reveals details on the state's population and relative greenhouse gas emissions (GHG) and gross-state-product (GSP).
+		
+		<br><br>
+		<div id= "chartbody">
+
+			<script>
+			// Set the dimensions of the canvas / graph
+			var margin = {top: 30, right: 100, bottom: 50, left: 150},
+			width = 1200 - margin.left - margin.right,
+			height = 340 - margin.top - margin.bottom;
+				
+			// Set the ranges
+			var x = d3.scale.linear().range([0, width]);
+			var y = d3.scale.linear().range([height, 0]);
+			// Define the axes
+			var xAxis = d3.svg.axis().scale(x)
+				.orient("bottom").ticks(10)
+				.tickFormat(d3.format("d"));
+			var yAxis = d3.svg.axis().scale(y)
+				.orient("left").ticks(8);
+
+			// Define the line
+			var valueline = d3.svg.line()
+				.x(function(d) { return x(d.Year); })
+				.y(function(d) { return y(parseFloat(d.GHG_Emissions)); });
+			// Adds the svg canvas and relevant elements 
+			var svg = d3.select("body")
+				.append("svg")
+				.attr("width", width + margin.left + margin.right)
+				.attr("height", height + margin.top + margin.bottom)
+				.append("g")
+				.attr("transform",
+				"translate(" + margin.left + "," + margin.top + ")");
+			
+			svg.append("text")
+				.attr("font-size", "25px")
+				.attr("x", width/2 - 190)
+				.attr("y", -10)
+				.text("Cumulative U.S. Emissions Over Time");
+
+			svg.append("text")
+				.attr("font-size", "20px")
+				.attr("x", width/2 - 20)
+				.attr("y", 310)
+				.text("Year");
+
+			svg.append("text")
+				.attr("font-size", "20px")
+				.attr("transform", "rotate(-90)")
+				.attr("x", -240)
+				.attr("y", -80)
+				.html("GHG Emissions (MtCO<tspan baseline-shift ='sub'>2</tspan>e)");
+
+			svg.append("text")
+					.attr("font-size", "15px")
+					.attr("fill", "red")
+					.attr("x", 830)
+					.attr("y", -5)
+					.html("Republican = Red");
+
+			svg.append("text")
+					.attr("font-size", "15px")
+					.attr("fill", "blue")
+					.attr("x", 830)
+					.attr("y", -18)
+					.html("Democrat = Blue");
+
+					var transwidth = width/12 + 7;
+
+			//Give me some bush
+			svg.append("svg:image")
+	      .attr("xlink:href", "images/GeorgeHWBush.jpg")
+	      .attr("width", width/12 + 7)
+	      .attr("height", height);
+
+			//Give me some bill
+			svg.append("svg:image")
+	      .attr("xlink:href", "images/BillClinton.jpg")
+	      .attr("width", width/12 + 7)
+	      .attr("height", height)
+	      .attr("transform", "translate("+transwidth+", 0)");
+	    svg.append("svg:image")
+	      .attr("xlink:href", "images/BillClinton.jpg")
+	      .attr("width", width/12 + 7)
+	      .attr("height", height)
+	      .attr("transform", "translate("+transwidth*2+", 0)");
+	    svg.append("svg:image")
+	      .attr("xlink:href", "images/BillClinton.jpg")
+	      .attr("width", width/12 + 7)
+	      .attr("height", height)
+	      .attr("transform", "translate("+transwidth*3+", 0)");
+	    svg.append("svg:image")
+	      .attr("xlink:href", "images/BillClinton.jpg")
+	      .attr("width", width/12 + 7)
+	      .attr("height", height)
+	      .attr("transform", "translate("+transwidth*4+", 0)");
+	    //Give me some bush jr. 
+	    svg.append("svg:image")
+	      .attr("xlink:href", "images/GeorgeWBush.jpeg")
+	      .attr("width", width/12 + 7)
+	      .attr("height", height)
+	      .attr("transform", "translate("+transwidth*5+", 0)");
+	    svg.append("svg:image")
+	      .attr("xlink:href", "images/GeorgeWBush.jpeg")
+	      .attr("width", width/12 + 7)
+	      .attr("height", height)
+	      .attr("transform", "translate("+transwidth*6+", 0)");
+	    svg.append("svg:image")
+	      .attr("xlink:href", "images/GeorgeWBush.jpeg")
+	      .attr("width", width/12 + 7)
+	      .attr("height", height)
+	      .attr("transform", "translate("+transwidth*7+", 0)");
+	    svg.append("svg:image")
+	      .attr("xlink:href", "images/GeorgeWBush.jpeg")
+	      .attr("width", width/12 + 7)
+	      .attr("height", height)
+	      .attr("transform", "translate("+transwidth*8+", 0)");
+	    //Give me some Obamarama (AKA CHANGE)
+	    svg.append("svg:image")
+	      .attr("xlink:href", "images/BarackObama.jpg")
+	      .attr("width", width/12 + 7)
+	      .attr("height", height)
+	      .attr("transform", "translate("+transwidth*9+", 0)");
+	    svg.append("svg:image")
+	      .attr("xlink:href", "images/BarackObama.jpg")
+	      .attr("width", width/12 + 7)
+	      .attr("height", height)
+	      .attr("transform", "translate("+transwidth*10+", 0)");
+			//This creates period of time rectangles 
+			for(var i=0; i<11; i++){
+				if(i == 0  || i == 5 || i == 6 || i == 7 || i ==8){
+					var rectangle = svg.append("rect")
+						.attr("class", "bars")
+						.attr("id", i)
+						.attr("x", (i*(width/12 + 7)))
+						.attr("y", 0)
+						.attr("width", width/12 + 7)
+						.attr("height", height)
+						.attr("fill", "red")
+						.attr("fill-opacity", 1);
+				}
+				else{
+					var rectangle = svg.append("rect")
+						.attr("class", "bars")
+						.attr("id", i)
+						.attr("x", (i*(width/12 + 7)))
+						.attr("y", 0)
+						.attr("width", width/12 + 7)
+						.attr("height", height)
+						.attr("fill", "blue")
+						.attr("fill-opacity", 1);
+				}
+			}
+			//This maintains an opacity filter on the clicked rectangle 
+			//If you actually read this (whoever you are) I will buy you coffee 
+			var clicked = -1;
+			svg.selectAll("rect").on("mouseover", function(){
+				this.style.opacity = 0.5;
+			});
+			svg.selectAll("rect").on('mouseout', function() {
+				if(clicked!=this.getAttribute("id")){
+					this.style.opacity = 1;
+				}
+			});
+			svg.selectAll("rect").on("click", function(){
+				clicked = this.getAttribute("id");
+				var csvname;
+			
+				if(this.getAttribute("id")==0){
+					csvname = "data/1992Election.csv";
+				}
+				else if(this.getAttribute("id")<3){
+					csvname = "data/1992Election.csv";
+				}
+				else if(this.getAttribute("id")<5){
+					csvname = "data/1996Election.csv";
+				}
+				else if(this.getAttribute("id")<7){
+					csvname = "data/2000Election.csv";
+				}
+				else if(this.getAttribute("id")<9){
+					csvname = "data/2004Election.csv";
+				}
+				else if(this.getAttribute("id")<12){
+					csvname = "data/2008Election.csv";
+				}
+				else{
+					csvname = "data/2008Election.csv";
+				}
+				//Clears the old map data 
+				d3.select("#USMAP").remove();
+				d3.select("#tips").remove();
+				d3.select("#stateName").remove();
+				d3.select("#rect").remove();
+				d3.select("#circlesvg").remove();
+				d3.select("#circlesvg2").remove();
+				//Creats new map based on period of time 
+				createMap(csvname);
+				for(var k=0; k<11; k++){
+					document.getElementById(k).style.opacity = 1.0;
+				}
+				document.getElementById(this.getAttribute("id")).style.opacity = 0.5;
+			});
+			// Get the data
+			d3.csv("data/YearlyPollution.csv", function(error, data) {
+				data.forEach(function(d) {
+					d.Year = d.Year;
+					d.GHG_Emissions = +d.GHG_Emissions;
+				});
+			// Scale the range of the data
+			x.domain(d3.extent(data, function(d) { return d.Year; }));
+			y.domain([d3.min(data, function(d) {return d.GHG_Emissions;})-100, d3.max(data, function(d) { return d.GHG_Emissions; }) + 100]);
+			// Add the valueline path.
+			svg.append("path")
+				.attr("class", "line")
+				.attr("d", valueline(data));
+			// Add the X Axis
+			svg.append("g")
+				.attr("class", "x axis")
+				.attr("transform", "translate(0," + height + ")")
+				.call(xAxis);
+			// Add the Y Axis
+			svg.append("g")
+				.attr("class", "y axis")
+				.call(yAxis);
+			});
+			</script>
+			<br>
+		</div>
+		<div id="break">
+		<br>
+		</div>
+	<section id="mapInfo">
+        <div id="map"></div>
+        <div id="info">
+            <p></p>
+            <div id="title"></div>
+            <p></p>
+            <div id="election"></div>
+            <p></p>
+            <div id="party"></div>
+            <p>Relative State GSP and GHG</p>
+            <div id="gsp"></div>
+            <div id="gsp1"></div>
+            <p></p>
+            <div id="emission"></div>
+            <p></p>
+            <div id="pollution">
+            <Table>
+                <tr>
+                    <td style="color:orange;font-size:12px"><div id="stateName"></div></td>
+                    <td style="color:orange;font-size:12px"><div id="USName"></div></td>
+                </tr>
+                <tr>
+                    <td><div id="statePollution"></div></td>
+                    <td><div id="USPollution"></div></td>
+                </tr>
+            </Table>
+            </div>
+            <p style="color:#92E211;font-size:15px">US Total VS State Population</p>
+            <div id="circle1"></div>
+            <p></p>
+        </div>
+        
+    </section>
+<script>
+		/*  This visualization is made possible by modifying and customizing the code provided by:
+		Scott Murray, Choropleth example from "Interactive Data Visualization for the Web"
+			https://github.com/alignedleft/d3-book/blob/master/chapter_12/05_choropleth.html
+		Malcolm Maclean, tooltips example tutorial
+		http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html
+		Mike Bostock, Pie Chart Legend
+		http://bl.ocks.org/mbostock/3888852  */
+		
+		var totalPop;
+		var thisYear;
+		var currentGDP;
+		var currentGHG;
+		var pos,low;
+		var check;
+		
+		//function to create map for each period
+		function createMap(str){
+			
+			//get the year of election
+			thisYear = parseInt(str.substring(5,9));
+			
+			//Set width and height of map
+			var width = 0.6*window.innerWidth, height = width/1.6;
+			//var height = 680;
+			//Select D3 Projection
+			var projection = d3.geo.albersUsa()
+					.translate([width/2, height/2])    // translate to center 
+					.scale([1050]);          // scale things to see entire US
+					
+			// Define path generator
+			var path = d3.geo.path()    //convert GeoJSON to SVG paths
+						.projection(projection); 	//use albersUsa projection
+		
+			//Create SVG element and append map to the SVG
+			var svg = d3.select("#map")
+				.append("svg")
+				.attr("id", "USMAP")
+				.attr("width", width)
+				.attr("height", height);
+
+			// Append Div for tooltip to SVG
+			var div = d3.select("#map")
+				.append("div")
+				.attr("id", "tips")
+				.attr("class", "tooltip")
+				.style("opacity", 0);
+			
+			//tool for mouse hover
+			var tooltip = d3.select('#map').append('div')
+				.attr('class', 'hidden tooltip');
+
+			// Load in election states data!
+			d3.csv(str, function(electionData) {
+			
+			// Load GeoJSON data and merge with states data
+			d3.json("data/us-states.json", function(json) {
+				// Loop through each state data value in the .csv file
+				for (var i = 0; i < electionData.length; i++) {
+					// Grab State Name and code
+					var dataState = electionData[i].NAME;
+					var stateCode = electionData[i].STATE;
+					// Grab data value
+					var orient = electionData[i].PARTY
+					// Find the corresponding state inside the GeoJSON
+					for (var j = 0; j < json.features.length; j++)  {
+						var jsonState = json.features[j].properties.name;
+						if (dataState == jsonState) {
+							// Copy the data valuex into the JSON for later potential use
+							json.features[j].properties.party = orient;
+							json.features[j].properties.stateCode = stateCode;
+							// Stop looking through the JSON
+							break;
+						}
+					}
+				}
+				//This creates the necessary elements for the comparative 
+				//GSP/GHG bars on the sideinformation tab 
+          var recSVG = d3.select("#gsp")
+                          .append("svg")
+						  						.attr("id", "rect")
+                          .attr("width",300)
+                          .attr("height",75)
+                          .append("g");
+          var rec = recSVG.append("rect")
+                          .attr("x", 0)
+                          .attr("y", 0)
+                          .attr("height", 10)
+                          .attr("width", 300)
+                          .attr("id", "rec")
+                          .style("fill", "none");              
+          var rec1 = recSVG.append("rect")
+                          .attr("x", 0)
+                          .attr("y", 35)
+                          .attr("height", 10)
+                          .attr("width", 300)
+                          .attr("id", "rec1")
+                          .style("fill", "none");
+          var cir = recSVG.append("rect")
+                          .attr("x", 0)
+                          .attr("y", 0)
+                          .attr("height", 10)
+                          .attr("width", 10)
+                          .attr("r", 5)
+                          .attr("id", "cir")
+                          .style("fill", "none");
+				var cir1 = recSVG.append("rect")
+                          .attr("x", 0)
+                          .attr("y", 35)
+                          .attr("height", 10)
+                          .attr("width", 10)
+                          .attr("r", 5)
+                          .attr("id", "cir1")
+                          .style("fill", "none");
+        var recText1 = recSVG.append("text")
+                        .attr("x", 0)
+                        .attr("y", 25)
+                        .style("font-size", 12)
+                        .style("fill", "lightcoral")
+                        .attr("id", "recText1")
+                        .text("Low GSP"); 
+        var recText2 = recSVG.append("text")
+                        .attr("x", 200)
+                        .attr("y", 25)
+                        .style("font-size", 12)
+                        .style("fill", "lightcoral")
+                        .attr("id", "recText2")
+                        .text("High GSP");
+        var rec1Text1 = recSVG.append("text")
+                        .attr("x", 0)
+                        .attr("y", 60)
+                        .style("font-size", 12)
+                        .style("fill", "lightcoral")
+                        .attr("id", "recText1")
+                        .text("Low GHG");                                                  
+        var rec1Text2 = recSVG.append("text")
+                        .attr("x", 195)
+                        .attr("y", 60)
+                        .style("font-size", 12)
+                        .style("fill", "lightcoral")
+                        .attr("id", "recText2")
+                        .text("High GHG");
+        //Create circles showing state population vs US total population 
+        var usCircle = d3.select("#circle1")
+                        .append("svg")
+						.attr("id", "circlesvg")
+                        .attr("width", 350)
+                        .attr("height", 400)
+                        .append("g")
+                        .attr("transform", 
+                        "translate(" + 0 + "," + 0 + ")");      
+        usCircle.append("circle")
+                        .attr("id", "uscircle1")
+                        .attr("r", 150)
+                        .attr("cx", 175)
+                        .attr("cy", 150)
+                        .style("fill", "none");                                                                                   
+        usCircle.append("text")
+                        .attr("id", "ustextcircle1")
+                        .attr("x", 75)
+                        .attr("y", 320)
+                        .attr("class", "legend")
+                        .style("font-size", "14px")
+                        .style("fill", "#92E211")
+                        .text(""); 
+				usCircle.append("circle")
+												.attr("id", "statecircle2")
+												.attr("r", 20)
+												.attr("cx", 175)
+												.attr("cy", 150)
+												.style("fill", "none");
+				usCircle.append("text")
+												.attr("id", "statetextcircle2")
+												.attr("x",75)
+												.attr("y",340)
+												.attr("class", "legend")
+												.style("font-size", 14)
+												.style("fill", "#92E211")
+												.text("");      
+                                         
+				// Bind the data to the SVG and create one path per GeoJSON feature
+				svg.selectAll("path")
+					.data(json.features)
+					.enter()
+					.append("path")
+					.attr("d", path)
+					.style("stroke", "#fff")
+					.style("stroke-width", "1")
+					.style("fill", function(d) {
+						// Get data value
+						var value = d.properties.party;
+						//blue for democrats
+						if (value=="Democrat") {
+							return "#0000FF";
+						}
+						//red for republicans
+						else if (value == "Republican"){
+							return "#FF0000";
+						}
+						else {
+							//If value is undefined…
+							return "#e5e5e5";
+						}
+					})
+					//Prepares new info for sidebar
+				.on('mousemove', function(d) {
+					var mouse = d3.mouse(svg.node()).map(function(d) {
+						return parseInt(d);
+					});
+
+					var name = d.properties.name
+
+					tooltip.classed('hidden', false)
+						.attr('style', 'left:' + (mouse[0] + 32) +'px; top:' + (mouse[1] + 100) + 'px')
+						.html("<strong>"+name+"</strong>" + "<br>" + "<i>Click state for more information</i>");
+				})
+
+				//Allows for transition of information and clears bars
+				.on('mouseout', function() {
+					tooltip.classed('hidden', true);
+					var title = document.getElementById("title");
+						title.innerHTML = "State: ";
+
+					var election = document.getElementById("election");
+						election.innerHTML = "Period: " ;
+					var party = document.getElementById("party");
+						party.innerHTML = "Political Affiliation: "
+					var statePopName = document.getElementById("statePopulation");
+					var populationTxt = d3.select("#statepop")
+									.style("fill", "#FF0000")
+									.text("");
+					var circle = d3.select("#cir")
+					  .transition()
+						.style("fill", "#FD9EBA")
+
+					var circle = d3.select("#cir1")
+					  .transition()
+						.style("fill", "#FD9EBA")
+					})
+				
+	//on mousemove append new visual elements 
+	.on('mousemove', function(d) {
+		var name = d.properties.name
+		var title = document.getElementById("title");
+		title.innerHTML = "State: " + name;	
+		if (thisYear=='9999') {
+			var election = document.getElementById("election");
+				election.innerHTML = "Period: " ;
+			}
+			else {
+				var election = document.getElementById("election");
+				election.innerHTML = "Period: " + thisYear + " - " + (thisYear+4);
+			}
+		
+		var party = document.getElementById("party");
+		party.innerHTML = "Political Affiliation: "+d.properties.party;
+		
+    // Gets the current population data and creates the circles !
+    d3.csv("data/statepopulations.csv", function(pop) {
+          var popSum;
+          var currentPopulation;
+          for (var i=0;i<pop.length;i++){
+                      
+               if (thisYear == 1992){
+                   if (pop[i].State == name){
+                      currentPopulation = pop[i].year1990;
+                   }
+                   if (pop[i].State == "Total U.S."){
+                       popSum = pop[i].year1990;
+                   }
+               }
+               else if (thisYear == 1996 || thisYear == 2000 || thisYear == 2004){
+                    if (pop[i].State == "Total U.S."){
+                        popSum = pop[i].year2000;
+                    }
+                    if (pop[i].State == name){
+                        currentPopulation = pop[i].year2000;
+                    }
+               }
+               else if (thisYear == 2008){
+                    if (pop[i].State == "Total U.S."){
+                        popSum = pop[i].year2010;
+                    }
+                    if (pop[i].State == name){
+                        currentPopulation = pop[i].year2010;
+                    }
+               }
+               else if (thisYear == 2012){
+                    if (pop[i].State == "Total U.S."){
+                        popSum = pop[i].year2015;
+                    }
+                    if (pop[i].State == name){
+                        currentPopulation = pop[i].year2015;
+                    }
+               }
+          }
+          popSum = popSum.split(',');
+          popSum = popSum.join("");
+                  
+          currentPopulation = currentPopulation.split(',');
+          currentPopulation = currentPopulation.join("");
+
+          //get the average population
+          var averagePop = Math.round(popSum/51);
+                  
+          //update circle for US average population
+          var USAveCircle1 = d3.select("#uscircle1")
+               .transition()
+               .attr("r", 150)
+               .style("fill","white");
+ 
+ 					  format = d3.format("0,000");
+							popSum = format(popSum);
+
+          var USAvePop = d3.select("#ustextcircle1")
+               .text("US Total Population: "+ popSum);
+                   
+          //update state population
+          //if republican
+          if (d.properties.party == "Republican"){
+              check = d.properties.party;
+              var populationCircle = d3.select("#statecircle2")
+                  .style("fill", "#FF0000")
+                  .transition()
+                  .attr("r", Math.round(currentPopulation*15/averagePop));
+
+              format = d3.format("0,000");
+							currentPopulation = format(currentPopulation);
+
+              var populationTxt = d3.select("#statetextcircle2")
+                  .text(name + " Population: " + currentPopulation);
+          }
+          //else if democrat
+          else if (d.properties.party == "Democrat"){
+               var circlePop = d3.select("#statecircle2")
+               .transition()
+               .attr("r", Math.round(currentPopulation*15/averagePop))
+               .style("fill", "#0000FF");
+
+                 format = d3.format("0,000");
+							currentPopulation = format(currentPopulation);
+
+          var txtPop = d3.select("#statetextcircle2")
+               .text(name + " Population: " + currentPopulation);
+          }
+			});
+					// GSP data!
+					d3.csv("data/2015StateGDP.csv", function(gdp) {
+						//array for all GDPs
+						var myArr = [];
+						for (var i=0;i<gdp.length;i++){
+							myArr.push(gdp[i].GDP);
+							if (gdp[i].Area == name){
+								currentGDP = gdp[i].GDP;
+							}
+						}
+						//create rectangle to represent GSPs
+						var rectangle = d3.select("#rec").transition().style("fill", "#FD9EBA");
+
+						//set position of rectangle to show comparison with other GSPs
+						var lowest = Math.min(...myArr);
+						myArr[0]=0;
+						var highest = Math.max(...myArr);
+						//calculate position of rectangle indicating this states gdp
+						pos = (currentGDP*200/highest);
+						console.log(pos);
+						
+						//give rectang;e appropriate coloring      
+						if (d.properties.party == "Republican"){
+							var circle = d3.select("#cir")
+									.style("fill", "#FF0000")
+									.transition()
+									.attr("x", pos);
+							var circle1 = d3.select("#cir1")
+									.style("fill", "#FF0000")
+									.transition()
+									.attr("x", pos);
+							var cirTxt = d3.select("#cirText")
+									.style("fill", "#FF0000")
+									.transition()
+									.attr("x", pos)
+									.text(currentGDP);
+						}
+						else if (d.properties.party == "Democrat"){
+							var circle = d3.select("#cir")
+									.style("fill", "#0000FF")
+									.transition()
+									.attr("x", pos);
+							var circle1 = d3.select("#cir1")
+									.style("fill", "#0000FF")
+									.transition()
+									.attr("x", pos);
+							var cirTxt = d3.select("#cirText")
+									.style("fill", "#0000FF")
+									.transition()
+									.attr("x", pos)
+									.text(currentGDP);
+						}
+					});
+
+					// Gets the average emission data
+            d3.csv("data/avgemission.csv", function(ghg) {
+						//array for all GDPs
+						var GHGArr = [];
+						for (var i=0;i<ghg.length;i++){
+							GHGArr.push(ghg[i].AVG_EMISSION);
+							if (ghg[i].NAME == name){
+								currentGHG = ghg[i].AVG_EMISSION;
+							}
+						}
+						//create rectangle to represent GSPs
+						var rectangle1 = d3.select("#rec1").transition().style("fill", "#FD9EBA");
+
+						//set position of rectangle to show comparison with other GSPs
+						var lowest1 = Math.min(...GHGArr);
+						GHGArr[0]=0;
+						var highest1 = Math.max(...GHGArr);
+						//calculate position of rectangle indicating this states gdp
+						pos1 = (currentGHG*240/highest1);
+
+						//give rectang;e appropriate coloring      
+						if (d.properties.party == "Republican"){
+							var circle1 = d3.select("#cir1")
+									.style("fill", "#FF0000")
+									.transition()
+									.attr("x", pos1);
+							var cirTxt = d3.select("#cirText")
+									.style("fill", "#FF0000")
+									.transition()
+									.attr("x", pos1)
+									.text(currentGHG);
+						}
+						else if (d.properties.party == "Democrat"){
+							var circle1 = d3.select("#cir1")
+									.style("fill", "#0000FF")
+									.transition()
+									.attr("x", pos1);
+							var cirTxt = d3.select("#cirText")
+									.style("fill", "#0000FF")
+									.transition()
+									.attr("x", pos1)
+									.text(currentGHG);
+						}
+					});
+					
+					
+					var stateName = document.getElementById("stateName");
+
+					var USName = document.getElementById("USName");
+					
+					//get GHG_Emissions for each state for the year
+					d3.csv("data/WorldResourcesInstituteCAIT.csv", function(pol) {
+						for (var i = 0; i < pol.length; i++) {
+							if (pol[i].Year == thisYear && pol[i].State == d.properties.stateCode){
+								var statepercent = document.getElementById("statepercent");
+							}
+						}           
+					}); 
+					
+					//get GHG_Emissions for US for the year
+					d3.csv("data/YearlyPollution.csv", function(yearly) {
+						for (var i = 0; i < yearly.length; i++) {
+							if (yearly[i].Year == thisYear ){
+								var USpercent = document.getElementById("USpercent");
+							}
+						}           
+					}); 
+				});
+			});
+		});
+	}
+		//Create the blank map
+		createMap("data/9999Election.csv");
+</script>
+<footer id="bot">
+  <p>Created by: Vincent Pan, Seth Martin, David Ndereba</p>
+</footer>
+</body>
+</html>

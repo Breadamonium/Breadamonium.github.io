@@ -1,0 +1,76 @@
+  body {
+            /*image borrowed from: http://www.carbonbrief.org/analysis-uk-carbon-emissions-fell-9-in-2014 */
+            background-image: url(http://assets.carbonbrief.org/wp-content/uploads/2015/09/stock-uk-coal-power-station-misty-morning-1550x804.jpg);
+            background-repeat: repeat;
+            background-attachment: fixed;
+        }
+        p {
+            color: lightcoral;
+        }
+		.state {
+			fill: #000;
+			stroke: #fff;
+			stroke-width: 1px;
+		}
+		.state:hover {
+			fill: #666;
+		}
+		.hidden {
+			display: none;
+		}
+		div.tooltip {
+			color: #222;
+			background-color: #fff;
+			padding: .5em;
+			text-shadow: #f5f5f5 0 1px 0;
+			border-radius: 2px;
+			opacity: 0.9;
+			position: absolute;
+		}
+        #mapInfo{
+            padding: 20px 20px 20px 20px;
+        }
+        /*code borrowed from: http://kenlimmj.github.io/cs3300/project2/disease/ */
+        #info{
+	        font-family: 'Lato', sans-serif;
+	        font-weight: 300;
+	        font-size: 14px;
+	        color: white;
+	        width: 300px;
+	        float: right;
+	        background: #404040;
+	        margin: -480px 0px 0px -30px;
+	        height: 600px;
+	        padding: 10px 50px 50px 10px;
+            opacity: 0.9;
+        }
+				.axis path,
+		.axis line {
+			fill: none;
+			stroke: #000;
+			shape-rendering: crispEdges;
+		}
+		.line {
+			fill: none;
+			stroke: white;
+			stroke-width: 2.5px;
+		}
+		.line2 {
+			fill: none;
+			stroke: red;
+			stroke-width: 1.5px;
+		}
+		.overlay {
+			fill: none;
+			pointer-events: all;
+		}
+		.focus circle {
+			fill: none;
+			stroke: steelblue;
+		}
+		.bar{		
+		
+		}
+		.bars:hover{
+			opacity: 0.5;
+		}
