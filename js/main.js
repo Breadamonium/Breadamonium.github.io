@@ -71,45 +71,6 @@ $(function(){
         if (window.navigator.msPointerEnabled) {
             return false;
         }
-            
-        allWindow.on('mousewheel DOMMouseScroll', function(e) {
-            
-            var deltaY = e.originalEvent.wheelDeltaY,
-                detail = e.originalEvent.detail;
-                scrollY = $document.height() > allWindow.height();
-                scroll = true;
-            
-            if (scrollY) {
-                
-                view = allWindow.height();
-                    
-                if (deltaY < 0 || detail > 0) {
-                    root = (root + view) >= $document.height() ? root : root += step;
-                }
-                
-                if (deltaY > 0 || detail < 0) {
-                    root = root <= 0 ? 0 : root -= step;
-                }
-                
-                $body.stop().animate({
-                    scrollTop: root
-                }, speed, option, function() {
-                    scroll = false;
-                });
-            }
-            
-            return false;
-            
-        }).on('scroll', function() {
-            
-            if (scrollY && !scroll) root = top;
-            if (!scroll) root = allWindow.scrollTop();
-            
-        }).on('resize', function() {
-            
-            if (scrollY && !scroll) view = allWindow.height();
-            
-        });       
     };
     
     jQuery.easing.default = function (x,t,b,c,d) {
